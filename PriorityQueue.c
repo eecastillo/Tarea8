@@ -16,7 +16,8 @@ Bool isValidIndex(PriorityQueue pq, int index){
 }
 int parentIndex(int index){
     //if(!isValidIndex(index)) return -2;
-    return 0.5*(index-1);
+  
+    return(index-1)/2;
 }
 int leftChildIndex(int index){
     //if(!isValidIndex(index)) return -3;
