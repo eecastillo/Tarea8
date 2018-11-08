@@ -82,21 +82,33 @@ Type priorityqueue_poll(PriorityQueue pq){
     pq->dF(pq->arr[0]);
     pq->arr[0]=pq->arr[pq->size-1];
     pq->size--;
-
+    printf("1\n");
     int e=0;
-    int c;
+    int c=0;
     while((pq->cF(pq->arr[e],pq->arr[leftChildIndex(e)])>0||pq->cF(pq->arr[e],pq->arr[rightChildIndex(e)])>0) && e<pq->size-1){
+        printf("indice %d\n",e);
+        printf("hijo %d\n",e);
         if(pq->cF(pq->arr[e],pq->arr[leftChildIndex(e)])>0){
+            c=leftChildIndex(e);
+            printf("2\n");
             Type datatemp = pq->arr[e];
+             printf("2.5\n");
             pq->arr[e]=pq->arr[c];
+           
             pq->arr[c]=datatemp;
-            e=leftChildIndex(e);
+            
+            e=c;
+            printf("3\n");
+            
         }
         else if(pq->cF(pq->arr[e],pq->arr[rightChildIndex(e)])>0){
+            c=rightChildIndex(e);
+            printf("4\n");
             Type datatemp = pq->arr[e];
             pq->arr[e]=pq->arr[c];
             pq->arr[c]=datatemp;
-            e=rightChildIndex(e);
+            e=c;
+            printf("5\n");
         }
         
     }
