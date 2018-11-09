@@ -88,7 +88,7 @@ Type priorityqueue_poll(PriorityQueue pq){
     while((pq->cF(pq->arr[e],pq->arr[leftChildIndex(e)])>0||pq->cF(pq->arr[e],pq->arr[rightChildIndex(e)])>0) && e<pq->size-1){
         printf("indice %d\n",e);
         
-        if(pq->cF(pq->arr[e],pq->arr[leftChildIndex(e)])>0){
+        if(pq->cF(pq->arr[e],pq->arr[leftChildIndex(e)])>0){  
             c=leftChildIndex(e);
             printf("2\n");
             Type datatemp = pq->arr[e];
