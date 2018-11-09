@@ -10,21 +10,25 @@ struct strPriorityQueue{
    CompareFunc cF;
 };
 
+void print(PriorityQueue pq){
+    for(int i=0;i<pq->size;i++){
+        printf("%d ",*(int*)pq->arr[i]);
+    }
+    printf("\n");
+}
+
 Bool isValidIndex(PriorityQueue pq, int index){
     if(pq==NULL || index>=pq->size) return False;
     return True;
 }
 int parentIndex(int index){
-    //if(!isValidIndex(index)) return -2;
   
     return(index-1)/2;
 }
 int leftChildIndex(int index){
-    //if(!isValidIndex(index)) return -3;
     return 2*index+1;
 }
 int rightChildIndex(int index){
-    //if(!isValidIndex(index)) return -4;
     return 2*index+2;
 }
 
@@ -39,8 +43,7 @@ PriorityQueue priorityqueue_create(DestroyFunc dF, CompareFunc cF, int capacity)
 }
 void priorityqueue_destroy(PriorityQueue pq){
     if(pq == NULL) return;
-
-    for(int i=0;i<pq->capacity;i++){
+    for(int i=pq->size-1;i>0;i--){
         pq->dF(pq->arr[i]);
     }
     free(pq->arr);
@@ -82,44 +85,25 @@ Type priorityqueue_poll(PriorityQueue pq){
     pq->dF(pq->arr[0]);
     pq->arr[0]=pq->arr[pq->size-1];
     pq->size--;
-    printf("1\n");
+    //printf("Primer elemento: %d\n", *(int*)pq->arr[0]);
     int e=0;
     int c=0;
-    while((pq->cF(pq->arr[e],pq->arr[leftChildIndex(e)])>0||pq->cF(pq->arr[e],pq->arr[rightChildIndex(e)])>0) && e<pq->size-1){
-        printf("indice %d\n",e);
-        
-        if(pq->cF(pq->arr[e],pq->arr[leftChildIndex(e)])>0){  
-            c=leftChildIndex(e);
-            printf("2\n");
-            Type datatemp = pq->arr[e];
-             printf("2.5\n");
-            pq->arr[e]=pq->arr[c];
-           
-            pq->arr[c]=datatemp;
-            
-            e=c;
-            printf("3\n");
-            
-        }
-        else if(pq->cF(pq->arr[e],pq->arr[rightChildIndex(e)])>0){
-            c=rightChildIndex(e);
-            printf("4\n");
-            Type datatemp = pq->arr[e];
-            pq->arr[e]=pq->arr[c];
-            pq->arr[c]=datatemp;
-            e=c;
-            printf("5\n");
-        }
-        printf("hijo %d\n",c);
+    if(pq->cF(pq->arr[leftChildIndex(e)], pq->arr[rightChildIndex(e)]) < 0){
+		c = rightChildIndex(e);
+	}
+	else{
+		c = leftChildIndex(e);
+	}
+    while((pq->cF(pq->arr[e], pq->arr[c]) < 0) && isValidIndex(pq, c)){
+		if(pq->cF(pq->arr[e], pq->arr[c]) < 0){
+			Type datatemp = pq->arr[e];
+			pq->arr[e]=pq->arr[c];		   
+			pq->arr[c]=datatemp;
+			e = c;
+		}
     }
     return temp;
 }
 
 
 
-void print(PriorityQueue pq){
-    for(int i=0;i<pq->size;i++){
-        printf("%d ",*(int*)pq->arr[i]);
-    }
-    printf("\n");
-}

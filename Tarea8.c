@@ -50,11 +50,11 @@ int main(){
 	int size=priorityqueue_size(pq);
 	printf("el tamano es: %d\n",size);
 
-	for(int i=0;i<size;i++){
-		printf("%d\n",priorityqueue_poll(pq));
-		//print(pq);
+	for(int i=0;i<size-1;i++){
+		print(pq);
+		printf("%d\n",*(int*)priorityqueue_poll(pq));
 	}
-
+	//print(pq);
 	priorityqueue_destroy(pq);
 	printf("Destruido");
 	/*//60 ser� der de 9
