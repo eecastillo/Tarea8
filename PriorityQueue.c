@@ -87,7 +87,7 @@ Type priorityqueue_poll(PriorityQueue pq){
     int c=0;
     while((pq->cF(pq->arr[e],pq->arr[leftChildIndex(e)])>0||pq->cF(pq->arr[e],pq->arr[rightChildIndex(e)])>0) && e<pq->size-1){
         printf("indice %d\n",e);
-        printf("hijo %d\n",e);
+        
         if(pq->cF(pq->arr[e],pq->arr[leftChildIndex(e)])>0){
             c=leftChildIndex(e);
             printf("2\n");
@@ -110,7 +110,7 @@ Type priorityqueue_poll(PriorityQueue pq){
             e=c;
             printf("5\n");
         }
-        
+        printf("hijo %d\n",c);
     }
     return temp;
 }
