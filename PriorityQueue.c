@@ -40,6 +40,7 @@ PriorityQueue priorityqueue_create(DestroyFunc dF, CompareFunc cF, int capacity)
     pq->capacity=capacity;
     pq->cF=cF;
     pq->dF=dF;
+    return pq;
 }
 void priorityqueue_destroy(PriorityQueue pq){
     if(pq == NULL) return;
