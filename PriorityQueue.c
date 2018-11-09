@@ -105,5 +105,9 @@ Type priorityqueue_poll(PriorityQueue pq){
     return temp;
 }
 
+int capacidad(PriorityQueue pq){
+	return pq->capacity;
+}
+
 
 

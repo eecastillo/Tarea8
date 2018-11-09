@@ -11,3 +11,4 @@ void priorityqueue_offer(PriorityQueue, Type);
 Type priorityqueue_peek(PriorityQueue);
 Type priorityqueue_poll(PriorityQueue);
 void print(PriorityQueue);
+int capacidad(PriorityQueue);
